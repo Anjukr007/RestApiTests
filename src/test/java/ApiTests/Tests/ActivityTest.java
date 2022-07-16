@@ -31,21 +31,28 @@ public class ActivityTest {
     }
     @Test
     public void getSingleActivity() throws IOException {
-       int id= 20;
+      int id;
+        ObjectMapper mapper= new ObjectMapper();
+        Activity activity= mapper.readValue(new File("src/test/resources/activity.json"),Activity.class);
+       id= service.SaveNewActivty(activity);
         service.GetSingleActivity(id);
     }
     @Test
     public void updateActivity() throws IOException {
-        int id= 20;
+        int id;
         ObjectMapper mapper= new ObjectMapper();
         Activity activity= mapper.readValue(new File("src/test/resources/activity.json"),Activity.class);
+        id= service.SaveNewActivty(activity);
         activity.setId(id);
         activity.setTitle("updated activity "+id );
         service.UpdateActivity(id,activity);
     }
     @Test
     public void deleteActivity() throws IOException {
-        int id= 20;
+        int id;
+        ObjectMapper mapper= new ObjectMapper();
+        Activity activity= mapper.readValue(new File("src/test/resources/activity.json"),Activity.class);
+        id= service.SaveNewActivty(activity);
         service.DeleteActivity(id);
     }
 

@@ -29,7 +29,7 @@ public class ActivityService {
     }
 
 
-    public void SaveNewActivty(Activity activity) {
+    public int SaveNewActivty(Activity activity) {
 
         Response response=  RestAssured
                 .given()
@@ -41,7 +41,10 @@ public class ActivityService {
                     .log().all()
                 .assertThat().statusCode(HttpStatus.SC_OK)
                 .extract().response();
-       System.out.println(response.jsonPath());
+        int Id = response.jsonPath().getInt("id");
+       //System.out.println(response.jsonPath());
+       // System.out.println(Id);
+        return(Id);
     }
 
     public void GetAllActivities() {
